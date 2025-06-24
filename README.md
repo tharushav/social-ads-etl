@@ -74,4 +74,6 @@ social-ads-etl/
 - **Best Segment**: Senior customers (45+) with 84.9% conversion
 - **Overall Conversion**: ~36% purchase rate
 
+**Dataset**: https://www.kaggle.com/datasets/sakshisatre/social-advertisement-dataset/data
+
 Name - Tharusha Vihanga
