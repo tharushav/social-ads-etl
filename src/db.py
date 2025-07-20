@@ -1,7 +1,16 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from .config import SQLITE_URL
-from .models import metadata
+
+# Handle both relative and absolute imports
+try:
+    # Try relative imports first (when used as module)
+    from .config import SQLITE_URL
+    from .models import metadata
+except ImportError:
+    # Fall back to absolute imports (when run as script)
+    from config import SQLITE_URL
+    from models import metadata
+
 import logging
 
 # Configure logging

@@ -8,8 +8,8 @@ project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 src_path = os.path.join(project_root, 'src')
 sys.path.insert(0, src_path)
 
+# Import after path setup
 from etl import SocialAdsETL
-from config import RAW_CSV
 
 class TestSocialAdsETL:
     """Test cases for Social Ads ETL pipeline"""
@@ -68,16 +68,16 @@ class TestSocialAdsETL:
         assert 'salary_bracket' in enriched_data.columns
         
         # Check age group categorization
-        assert enriched_data.iloc[0]['age_group'] == "Young (18-24)"
-        assert enriched_data.iloc[1]['age_group'] == "Adult (25-34)"
-        assert enriched_data.iloc[2]['age_group'] == "Middle Age (35-44)"
-        assert enriched_data.iloc[3]['age_group'] == "Senior (45+)"
+        assert enriched_data.iloc[0]['age_group'] == "young_18_24"
+        assert enriched_data.iloc[1]['age_group'] == "adult_25_34"
+        assert enriched_data.iloc[2]['age_group'] == "middle_age_35_44"
+        assert enriched_data.iloc[3]['age_group'] == "senior_45_plus"
         
         # Check salary bracket categorization
-        assert enriched_data.iloc[0]['salary_bracket'] == "Low (<30K)"
-        assert enriched_data.iloc[1]['salary_bracket'] == "Medium (30K-60K)"
-        assert enriched_data.iloc[2]['salary_bracket'] == "High (60K-100K)"
-        assert enriched_data.iloc[3]['salary_bracket'] == "Very High (100K+)"
+        assert enriched_data.iloc[0]['salary_bracket'] == "low_under_30k"
+        assert enriched_data.iloc[1]['salary_bracket'] == "medium_30k_60k"
+        assert enriched_data.iloc[2]['salary_bracket'] == "high_60k_100k"
+        assert enriched_data.iloc[3]['salary_bracket'] == "very_high_100k_plus"
     
     def test_transform_pipeline(self):
         """Test complete transformation pipeline"""
@@ -103,5 +103,6 @@ class TestSocialAdsETL:
         assert df_transformed['salary_bracket'].notna().all()
 
 if __name__ == "__main__":
-    # Run tests
-    pytest.main([__file__, "-v"])
+    # Run tests with proper pytest invocation
+    import subprocess
+    subprocess.run([sys.executable, "-m", "pytest", __file__, "-v"])
