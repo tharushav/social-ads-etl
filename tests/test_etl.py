@@ -3,11 +3,13 @@ import pandas as pd
 import sys
 import os
 
-# Add src to path
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
+# Add src to path - fix the path resolution
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+src_path = os.path.join(project_root, 'src')
+sys.path.insert(0, src_path)
 
-from src.etl import SocialAdsETL
-from src.config import RAW_CSV
+from etl import SocialAdsETL
+from config import RAW_CSV
 
 class TestSocialAdsETL:
     """Test cases for Social Ads ETL pipeline"""
